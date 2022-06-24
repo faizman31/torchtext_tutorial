@@ -1,2 +1,30 @@
-# torchtext_tutorial
-Torchtext Tutorial
+# Torchtext Tutorial
+
+- torchtext == 0.11.0
+
+---
+
+## 본 레포지토리는 "PyTorch로 시작하는 딥러닝 입문"의 "토치텍스트 튜토리얼"을 참조하였습니다.
+
+## Reference) https://wikidocs.net/60314
+
+---
+
+## 0. 토치텍스트(torchtext)란?
+
+- 토치텍스트(torchtext)는 텍스트에 대해 여러 추상화 기능을 제공하는 자연어 처리 라이브러리입니다.
+
+---
+
+## 1. 토치텍스트(torchtext)의 기능
+
+- 파일 로드하기(File Loading) : 다양한 형태의 코퍼스를 로드합니다.
+- 토큰화(Tokenization) : 문장을 단어 단위로 분리해줍니다.
+- 단어 집합(Vocab) : 단어 집합을 만들어줍니다.
+- 정수 인코딩(Integer Encoding) : 전체 코퍼스의 단어들을 각각의 고유한 정수로 맵핑합니다.
+- 단어 벡터(Word Vector) : 단어 집합들의 단어들에 고유한 임베딩 벡터를 만들어 줍니다. 랜덤값으로 초기화한 값일 수 도 있고, 사전 훈련된 임베딩 벡터들을 로드할수도 있습니다.
+- 배치화(Batching) : 훈련 샘플들의 배치를 만들어 줍니다. + Padding 작업도 같이 이루어 집니다.
+
+---
+
+## 2. 데이터 수집
