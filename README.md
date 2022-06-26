@@ -53,3 +53,42 @@ test=df[25000:] # 테스트 샘플 25000개
 train.to_csv('./data/train_data.csv',index=False)
 test.to_csv('./data/test_data.csv',index=False)
 ```
+
+---
+
+## 3. torchtext를 활용하여 필드(Field) 정의하기
+
+### 3-0. 라이브러리 임포트
+
+```
+from torchtext.legacy import data
+```
+
+### 3-1. 필드(Field) 정의하기
+
+- sequential : 시퀀스 데이터 여부 (Default == True)
+- use_vocab : 단어집 생성 여부 (Default == True)
+- tokenize : 사용할 토큰화 함수 (Default == str.split)
+- lower : 영어 시퀀스 소문자 여부 (Default == False)
+- batch_first : 미니 배치 차원을 맨 앞으로 하여 데이터를 불러올건지 여부 (Default == False)
+- is_target : 레이블 데이터 여부 (Default == False)
+- fix_length : 시퀀스 최대 허용 길이, 이 길이에 따라서 패딩(padding) 작업이 진행된다.
+
+```
+TEXT=data.Field(
+    sequential=True,
+    use_vocab=True,
+    tokenize=str.split,
+    lower=True,
+    batch_first=True,
+    is_target=False,
+    fix_length=20
+)
+
+LABEL=data.Field(
+    sequential=False,
+    use_vocab=False,
+    batch_first=False,
+    is_target=True
+)
+```
