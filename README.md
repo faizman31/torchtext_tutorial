@@ -136,3 +136,88 @@ print(train_data.fields.items())
 dict_items([('text', <torchtext.legacy.data.field.Field object at 0x7fe4add8f090>), ('label', <torchtext.legacy.data.field.Field object at 0x7fe4add8f050>)])
 ###
 ```
+
+---
+
+## 5. 단어 집합 만들기
+
+- 토큰화 작업이 끝난 후에는 단어를 고유한 정수로 맵핑해주는 정수 인코딩(Integer Encoding)작업이 필요합니다. 이를 위해서는 단어 집합(vocab)이 필요합니다.
+- `<Field Name>.build_vocab(dataset,min_freq,max_size)`
+- min_freq : 최소 등장 빈도 조건 , max_size : 단어 집합의 최대 크기
+
+### 5-1. 단어 집합 생성
+
+```
+TEXT.build_vocab(train_data,min_freq=10,max_size=10000)
+```
+
+### 5-2. 단어 집합 확인
+
+- 단어 집합의 크기는 max_size로 지정한 10000보다 2개가 많게 나온다 그 이유는 unk,pad 와 같은 special token이 추가되어 있기 때문입니다.
+
+```
+print('단어 집합의 크기 : {}'.format(len(TEXT.vocab)))
+### 10002
+```
+
+- vocab을 확인하기 위해서는 stoi를 사용하여 확인할 수 있습니다.
+
+```
+print(TEXT.vocab.stoi)
+```
+
+---
+
+## 6. torchtext 데이터로더 만들기
+
+- 데이터로더는 데이터셋에서 미니 배치만큼 데이터를 로드하는 역할을 합니다.
+
+### 6-0. 라이브러리 임포트
+
+```
+from torchtext.legacy.data import Iterator
+```
+
+### 6-1. 데이터로더 생성
+
+```
+batch_size=10
+train_loader=Iterator(dataset=train_data,batch_size=batch_size)
+test_loader=Iterator(dataset=test_data,batch_size=batch_size)
+```
+
+### 6-2. 데이터로더 확인
+
+- 데이터로더의 미니배치의 갯수
+
+```
+print('훈련 데이터 미니배치의 갯수 : {}'.format(len(train_loader)))
+print('테스트 데이터 미니배치의 갯수 : {}'.format(len(test_loader)))
+
+###
+훈련 데이터의 미니배치의 갯수 : 2500
+테스트 데이터의 미니배치의 갯수 : 2500
+###
+```
+
+- 데이터로더에서 미니배치 하나씩 꺼내보는 방법 : next,iter 사용
+
+```
+batch=next(iter(train_loader))
+```
+
+- torchtext의 데이터로더는 일반적인 데이터로더와 다르게 torchtext.legacy.batch.Batch 객체이기 때문에 필드를 통해서 접근해야지만 tensor로 나타납니다.
+
+```
+print(type(batch))
+print(batch.text)
+
+###
+<class 'torchtext.legacy.data.batch.Batch'>
+
+tensor([[  29,   48,  251,  114,    3,   25,  369,   38,   96,   43,    0, 1648,
+            8,   43,    0,    0, 1321,   47,   15,    3],
+        [   9,   61,  465,   10,  664,   34, 3871,    0,    2,  119,  850,    9,
+           91,  207,   63,    6, 1654,   11,   17,    7]])
+###
+```
