@@ -1,13 +1,12 @@
 # Torchtext Tutorial
 
-<<<<<<< HEAD
 - torchtext == 0.11.0
 
 ---
 
 ## 본 레포지토리는 "PyTorch로 시작하는 딥러닝 입문"의 "토치텍스트 튜토리얼"을 참조하였습니다.
 
-## Reference) https://wikidocs.net/60314
+- Reference) https://wikidocs.net/60314
 
 ---
 
@@ -29,5 +28,3 @@
 ---
 
 ## 2. 데이터 수집
-=======
->>>>>>> ffe906934c37cc8dd3cc4f528768ee6b8bd29d56
