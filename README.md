@@ -92,3 +92,32 @@ LABEL=data.Field(
     is_target=True
 )
 ```
+
+---
+
+## 4. 데이터셋 만들기
+
+### 4-0. 라이브러리 임포트
+
+```
+from torchtext.legacy.data import TabularDataset
+```
+
+### 4-1. 데이터셋 만들기
+
+- path : 데이터 파일 경로
+- train/test : train/test 파일 이름
+- format : 데이터 포맷 (csv,tsv,json)
+- fields : 필드 정의
+- skip_header : 데이터의 첫번째 줄 생략 (csv 파일의 경우 첫번째 줄은 컬럼명)
+
+```
+train_data,test_data=Tabular.split(
+    path='./data',
+    train='train_data.csv',
+    test='test_data.csv',
+    format='csv',
+    fields=[('text',TEXT),('label',LABEL)],
+    skip_header=True
+)
+```
