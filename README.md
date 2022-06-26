@@ -27,4 +27,29 @@
 
 ---
 
-## 2. 데이터 수집
+## 2. Train/Test 데이터로 분리하기
+
+### 2-0. 라이브러리 임포트
+
+- 본 Torchtext Tutorial에서는 IMDB리뷰 데이터를 통해 튜토리얼을 진행합니다.
+
+```
+import urllib.request
+import pandas as pd
+```
+
+### 2-1. 데이터 다운로드
+
+```
+urllib.request.urlretrieve("https://raw.githubusercontent.com/LawrenceDuan/IMDb-Review-Analysis/master/IMDb_Reviews.csv", filename="IMDb_Reviews.csv")
+```
+
+### 2-2. 데이터 불러오기 & Train/Test 데이터 분리하기
+
+```
+df=pd.read_csv('IMDb_Reviews.csv',encoding='latin1') # 전체 샘플 갯수 50000개
+train=df[:25000] # 훈련 샘플 25000개
+test=df[25000:] # 테스트 샘플 25000개
+train.to_csv('./data/train_data.csv',index=False)
+test.to_csv('./data/test_data.csv',index=False)
+```
