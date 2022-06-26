@@ -121,3 +121,18 @@ train_data,test_data=Tabular.split(
     skip_header=True
 )
 ```
+
+### 4-2. 추가적인 기능
+
+- vars() : 주어진 인덱스의 샘플 확인 가능
+- TabularDataset.fields.items() : field 구성 확인
+
+```
+print(vars(train_data[0]))
+print(train_data.fields.items())
+
+###
+{'text': ['my', 'family', 'and', 'i', 'normally', 'do', ... ,'and', 'claudine!!'], 'label': '1'}
+dict_items([('text', <torchtext.legacy.data.field.Field object at 0x7fe4add8f090>), ('label', <torchtext.legacy.data.field.Field object at 0x7fe4add8f050>)])
+###
+```
