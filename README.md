@@ -1,5 +1,6 @@
 # Torchtext Tutorial
 
+<<<<<<< HEAD
 - torchtext == 0.11.0
 
 ---
@@ -28,3 +29,5 @@
 ---
 
 ## 2. 데이터 수집
+=======
+>>>>>>> ffe906934c37cc8dd3cc4f528768ee6b8bd29d56
